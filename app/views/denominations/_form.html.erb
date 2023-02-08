@@ -1,0 +1,62 @@
+<%= form_with(model: [@shop,denomination]) do |form| %>
+  <% if denomination.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(denomination.errors.count, "error") %> prohibited this denomination from being saved:</h2>
+
+      <ul>
+        <% denomination.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :five_hundred %>
+    <%= form.number_field :five_hundred %>
+  </div>
+
+  <div class="field">
+    <%= form.label :hundred %>
+    <%= form.number_field :hundred %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fifty %>
+    <%= form.number_field :fifty %>
+  </div>
+
+  <div class="field">
+    <%= form.label :twenty %>
+    <%= form.number_field :twenty %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ten %>
+    <%= form.number_field :ten %>
+  </div>
+
+  <div class="field">
+    <%= form.label :five %>
+    <%= form.number_field :five %>
+  </div>
+
+  <div class="field">
+    <%= form.label :two %>
+    <%= form.number_field :two %>
+  </div>
+
+  <div class="field">
+    <%= form.label :one %>
+    <%= form.number_field :one %>
+  </div>
+
+  <div class="field">
+    <%= form.label :shop_id %>
+    <%= form.text_field :shop_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

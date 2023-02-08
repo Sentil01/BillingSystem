@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Five hundred:</strong>
+  <%= @denomination.five_hundred %>
+</p>
+
+<p>
+  <strong>Hundred:</strong>
+  <%= @denomination.hundred %>
+</p>
+
+<p>
+  <strong>Fifty:</strong>
+  <%= @denomination.fifty %>
+</p>
+
+<p>
+  <strong>Twenty:</strong>
+  <%= @denomination.twenty %>
+</p>
+
+<p>
+  <strong>Ten:</strong>
+  <%= @denomination.ten %>
+</p>
+
+<p>
+  <strong>Five:</strong>
+  <%= @denomination.five %>
+</p>
+
+<p>
+  <strong>Two:</strong>
+  <%= @denomination.two %>
+</p>
+
+<p>
+  <strong>One:</strong>
+  <%= @denomination.one %>
+</p>
+
+<p>
+  <strong>Shop:</strong>
+  <%= @denomination.shop_id %>
+</p>
+
+<%= link_to 'Edit', edit_shop_denomination_path(@shop,@denomination) %> |
+<%= link_to 'Back', shop_denominations_path(@shop) %>

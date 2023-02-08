@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_08_072534) do
+ActiveRecord::Schema.define(version: 2023_02_08_081044) do
+
+  create_table "denominations", force: :cascade do |t|
+    t.integer "five_hundred"
+    t.integer "hundred"
+    t.integer "fifty"
+    t.integer "twenty"
+    t.integer "ten"
+    t.integer "five"
+    t.integer "two"
+    t.integer "one"
+    t.integer "shop_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "total"
+    t.index ["shop_id"], name: "index_denominations_on_shop_id"
+  end
 
   create_table "products", force: :cascade do |t|
     t.float "price"
@@ -29,5 +45,6 @@ ActiveRecord::Schema.define(version: 2023_02_08_072534) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "denominations", "shops"
   add_foreign_key "products", "shops"
 end

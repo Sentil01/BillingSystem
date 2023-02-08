@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Denominations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Five hundred</th>
+      <th>Hundred</th>
+      <th>Fifty</th>
+      <th>Twenty</th>
+      <th>Ten</th>
+      <th>Five</th>
+      <th>Two</th>
+      <th>One</th>
+      <th>Shop</th>
+
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @denominations.each do |denomination| %>
+      <tr>
+        <td><%= denomination.five_hundred %></td>
+        <td><%= denomination.hundred %></td>
+        <td><%= denomination.fifty %></td>
+        <td><%= denomination.twenty %></td>
+        <td><%= denomination.ten %></td>
+        <td><%= denomination.five %></td>
+        <td><%= denomination.two %></td>
+        <td><%= denomination.one %></td>
+        <td><%= denomination.shop_id %></td>
+
+        <td><%= link_to 'Show', shop_denomination_path(@shop,denomination) %></td>
+        <td><%= link_to 'Edit', edit_shop_denomination_path(@shop,denomination) %></td>
+        <td><%= link_to 'Destroy', shop_denomination_path(@shop,denomination), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Denomination', new_shop_denomination_path(@shop) %>
