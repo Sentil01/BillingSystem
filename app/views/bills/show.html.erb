@@ -30,16 +30,17 @@
 </p>
 <div>
   <h1>Denominations Available</h1>
-  <% @bill.amounts.each do|a| %>
-    <p>500 Quantity:<%= a.five_hundred %></p>
-    <p>100 Quantity:<%= a.hundred   %></p>
-    <p>50 Quantity:<%= a.fifty %></p>
-    <p>10 Quantity:<%= a.ten %></p>
-    <p>5 Quantity:<%= a.five %></p>
-    <p>2 Quantity:<%= a.two %></p>
-    <p>1 Quantity:<%= a.one %></p>
+  <p>500 Quantity:<%= @bill.amount.five_hundred %></p>
+  <%# @bill.amounts.each do|a| %>
+<!--    <p>500 Quantity:<%#= a.five_hundred %></p>-->
+<!--    <p>100 Quantity:<%#= a.hundred   %></p>-->
+<!--    <p>50 Quantity:<%#= a.fifty %></p>-->
+<!--    <p>10 Quantity:<%#= a.ten %></p>-->
+<!--    <p>5 Quantity:<%#= a.five %></p>-->
+<!--    <p>2 Quantity:<%#= a.two %></p>-->
+<!--    <p>1 Quantity:<%#= a.one %></p>-->
 
-  <% end %>
+  <%# end %>
 
 
 
