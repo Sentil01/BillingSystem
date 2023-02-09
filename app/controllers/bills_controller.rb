@@ -70,6 +70,6 @@ class BillsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def bill_params
-      params.require(:bill).permit(:email_id, :name, :amount_paid, :shop_id,carts_attributes: [ :product_id, :quantity, :id, :_destroy])
+      params.require(:bill).permit(:email_id, :name, :amount_paid, :shop_id,:five_hundred, :hundred, :fifty, :twenty, :ten, :five, :two, :one,carts_attributes: [ :product_id, :quantity, :id, :_destroy])
     end
 end

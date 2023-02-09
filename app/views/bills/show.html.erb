@@ -17,7 +17,7 @@
 <p>
   <strong>Products:</strong>
   <div>
-    <%= @cart.each do|c| %>
+    <% @cart.each do|c| %>
        <p>ProductId:</p><%= c.product_id %>
        <p>Quantity:</p><%= c.quantity %>
        <p>Bill ID:</p><%= @bill.id %>
@@ -28,6 +28,19 @@
   <strong>Shop:</strong>
   <%= @bill.shop_id %>
 </p>
+  <div>
+    <h1>Denominations Available</h1>
 
+      <p>500 Quantity:<%= @bill.five_hundred %></p>
+      <p>100 Quantity:<%= @bill.hundred ? @bill.hundred : 0  %></p>
+      <p>50 Quantity:<%= @bill.fifty %></p>
+      <p>10 Quantity:<%= @bill.ten %></p>
+      <p>5 Quantity:<%= @bill.five %></p>
+      <p>2 Quantity:<%= @bill.two %></p>
+      <p>1 Quantity:<%= @bill.one %></p>
+
+
+
+  </div>
 <%= link_to 'Edit', edit_shop_bill_path(@shop,@bill) %> |
 <%= link_to 'Back', shop_bills_path(@shop) %>

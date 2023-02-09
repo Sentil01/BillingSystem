@@ -37,22 +37,61 @@
     <%= form.label :shop_id %>
     <%= form.text_field :shop_id %>
   </div>
-
-
+  <br>
+  <h1>Denominations</h1>
   <div>
-    <h1>Denominations Available</h1>
-    <% @shop.denominations.each do |d| %>
-      <p>500 Quantity:<%= d.five_hundred %></p>
-      <p>100 Quantity:<%= d.hundred %></p>
-      <p>50 Quantity:<%= d.fifty %></p>
-      <p>10 Quantity:<%= d.ten %></p>
-      <p>5 Quantity:<%= d.five %></p>
-      <p>2 Quantity:<%= d.two %></p>
-      <p>1 Quantity:<%= d.one %></p>
-
-    <%end %>
+    <div class="field">
+      <%= form.label :"500" %>
+      <p>Quantity:</p><%= form.number_field :five_hundred %>
+    </div>
+    <div class="field">
+      <%= form.label :"100" %>
+      <p>Quantity:</p><%= form.number_field :hundred %>
+    </div>
+    <div class="field">
+      <%= form.label :"50" %>
+      <p>Quantity:</p><%= form.number_field :fifty %>
+    </div>
+    <div class="field">
+      <%= form.label :"20" %>
+      <p>Quantity:</p><%= form.number_field :twenty %>
+    </div>
+    <div class="field">
+      <%= form.label :"10" %>
+      <p>Quantity:</p><%= form.number_field :ten %>
+    </div>
+    <div class="field">
+      <%= form.label :"5" %>
+      <p>Quantity:</p><%= form.number_field :five %>
+    </div>
+    <div class="field">
+      <%= form.label :"2" %>
+      <p>Quantity:</p><%= form.number_field :two %>
+    </div>
+    <div class="field">
+      <%= form.label :"1" %>
+      <p>Quantity:</p><%= form.number_field :one %>
+    </div>
 
   </div>
+
+
+
+
+<!--  <div>-->
+<!--    <h1>Denominations Available</h1>-->
+    <%# @shop.denominations.each do |d| %>
+<!--      <p>500 Quantity:<%#= d.five_hundred %></p>-->
+<!--      <p>100 Quantity:<%#= d.hundred %></p>-->
+<!--      <p>50 Quantity:<%#= d.fifty %></p>-->
+<!--      <p>10 Quantity:<%#= d.ten %></p>-->
+<!--      <p>5 Quantity:<%#= d.five %></p>-->
+<!--      <p>2 Quantity:<%#= d.two %></p>-->
+<!--      <p>1 Quantity:<%#= d.one %></p>-->
+
+    <%#end %>
+
+<!--  </div>-->
   <div class="actions">
     <%= form.submit %>
   </div>
