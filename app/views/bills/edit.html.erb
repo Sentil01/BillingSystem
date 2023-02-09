@@ -1,0 +1,6 @@
+<h1>Editing Bill</h1>
+
+<%= render 'form', bill: @bill %>
+
+<%= link_to 'Show', shop_bill_path(@shop,@bill) %> |
+<%= link_to 'Back', shop_bills_path(@shop) %>

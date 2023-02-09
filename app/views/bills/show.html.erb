@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @bill.email_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @bill.name %>
+</p>
+
+<p>
+  <strong>Amount paid:</strong>
+  <%= @bill.amount_paid %>
+</p>
+
+<p>
+  <strong>Shop:</strong>
+  <%= @bill.shop_id %>
+</p>
+
+<%= link_to 'Edit', edit_shop_bill_path(@shop,@bill) %> |
+<%= link_to 'Back', shop_bills_path(@shop) %>

@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_08_081044) do
+ActiveRecord::Schema.define(version: 2023_02_09_121124) do
+
+  create_table "bills", force: :cascade do |t|
+    t.string "email_id"
+    t.string "name"
+    t.integer "amount_paid"
+    t.integer "shop_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["shop_id"], name: "index_bills_on_shop_id"
+  end
 
   create_table "denominations", force: :cascade do |t|
     t.integer "five_hundred"
@@ -45,6 +55,7 @@ ActiveRecord::Schema.define(version: 2023_02_08_081044) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "bills", "shops"
   add_foreign_key "denominations", "shops"
   add_foreign_key "products", "shops"
 end
