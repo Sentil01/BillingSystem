@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_09_122829) do
+ActiveRecord::Schema.define(version: 2023_02_09_181407) do
+
+  create_table "amounts", force: :cascade do |t|
+    t.integer "five_hundred", default: 0
+    t.integer "hundred", default: 0
+    t.integer "fifty", default: 0
+    t.integer "ten", default: 0
+    t.integer "five", default: 0
+    t.integer "two", default: 0
+    t.integer "one", default: 0
+    t.integer "bill_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["bill_id"], name: "index_amounts_on_bill_id"
+  end
 
   create_table "bills", force: :cascade do |t|
     t.string "email_id"
@@ -19,6 +33,14 @@ ActiveRecord::Schema.define(version: 2023_02_09_122829) do
     t.integer "shop_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "five_hundred"
+    t.integer "hundred"
+    t.integer "fifty"
+    t.integer "twenty"
+    t.integer "ten"
+    t.integer "five"
+    t.integer "two"
+    t.integer "one"
     t.index ["shop_id"], name: "index_bills_on_shop_id"
   end
 
@@ -64,6 +86,7 @@ ActiveRecord::Schema.define(version: 2023_02_09_122829) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "amounts", "bills"
   add_foreign_key "bills", "shops"
   add_foreign_key "carts", "bills"
   add_foreign_key "denominations", "shops"

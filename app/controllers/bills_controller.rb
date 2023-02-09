@@ -14,6 +14,7 @@ class BillsController < ApplicationController
   # GET /bills/new
   def new
     @bill =  @shop.bills.build
+    @amount=@bill.amounts.build
   end
 
   # GET /bills/1/edit
@@ -66,10 +67,11 @@ class BillsController < ApplicationController
     def set_bill
       @bill = @shop.bills.find(params[:id])
       @cart=@bill.carts
+      @amounts=@bill.amounts
     end
 
     # Only allow a list of trusted parameters through.
     def bill_params
-      params.require(:bill).permit(:email_id, :name, :amount_paid, :shop_id,carts_attributes: [ :product_id, :quantity, :id, :_destroy])
+      params.require(:bill).permit(:email_id, :name, :amount_paid, :shop_id,carts_attributes: [ :product_id, :quantity, :id, :_destroy],amounts_attributes: [ :five_hundred, :hundred, :fifty, :ten, :five, :two, :one])
     end
 end

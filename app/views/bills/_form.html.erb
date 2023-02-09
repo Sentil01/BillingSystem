@@ -41,16 +41,13 @@
 
   <div>
     <h1>Denominations Available</h1>
-    <% @shop.denominations.each do |d| %>
-      <p>500 Quantity:<%= d.five_hundred %></p>
-      <p>100 Quantity:<%= d.hundred %></p>
-      <p>50 Quantity:<%= d.fifty %></p>
-      <p>10 Quantity:<%= d.ten %></p>
-      <p>5 Quantity:<%= d.five %></p>
-      <p>2 Quantity:<%= d.two %></p>
-      <p>1 Quantity:<%= d.one %></p>
 
-    <%end %>
+    <fieldset>
+      <%= form.fields_for :amounts do |a| %>
+        <%= render "amounts_fields",fo: a %>
+      <%end %>
+
+    </fieldset>
 
   </div>
   <div class="actions">

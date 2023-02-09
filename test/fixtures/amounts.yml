@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  five_hundred: 1
+  hundred: 1
+  fifty: 1
+  ten: 1
+  five: 1
+  two: 1
+  one: 1
+  bill: one
+
+two:
+  five_hundred: 1
+  hundred: 1
+  fifty: 1
+  ten: 1
+  five: 1
+  two: 1
+  one: 1
+  bill: two
