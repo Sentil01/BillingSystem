@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_09_121124) do
+ActiveRecord::Schema.define(version: 2023_02_09_122829) do
 
   create_table "bills", force: :cascade do |t|
     t.string "email_id"
@@ -20,6 +20,15 @@ ActiveRecord::Schema.define(version: 2023_02_09_121124) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["shop_id"], name: "index_bills_on_shop_id"
+  end
+
+  create_table "carts", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "quantity"
+    t.integer "bill_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["bill_id"], name: "index_carts_on_bill_id"
   end
 
   create_table "denominations", force: :cascade do |t|
@@ -56,6 +65,7 @@ ActiveRecord::Schema.define(version: 2023_02_09_121124) do
   end
 
   add_foreign_key "bills", "shops"
+  add_foreign_key "carts", "bills"
   add_foreign_key "denominations", "shops"
   add_foreign_key "products", "shops"
 end

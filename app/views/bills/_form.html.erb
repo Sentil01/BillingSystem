@@ -25,6 +25,13 @@
     <%= form.label :amount_paid %>
     <%= form.number_field :amount_paid %>
   </div>
+  <h3>Products:</h3>
+  <fieldset>
+    <%= form.fields_for :carts do |c| %>
+       <%= render "carts_fields",f: c %>
+    <%end %>
+    <%= link_to_add_to_carts "Add Products",form, :carts %>
+  </fieldset>
 
   <div class="field">
     <%= form.label :shop_id %>

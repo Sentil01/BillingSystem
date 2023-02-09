@@ -65,10 +65,11 @@ class BillsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_bill
       @bill = @shop.bills.find(params[:id])
+      @cart=@bill.carts
     end
 
     # Only allow a list of trusted parameters through.
     def bill_params
-      params.require(:bill).permit(:email_id, :name, :amount_paid, :shop_id)
+      params.require(:bill).permit(:email_id, :name, :amount_paid, :shop_id,carts_attributes: [ :product_id, :quantity, :id, :_destroy])
     end
 end

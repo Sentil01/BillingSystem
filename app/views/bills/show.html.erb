@@ -14,7 +14,16 @@
   <strong>Amount paid:</strong>
   <%= @bill.amount_paid %>
 </p>
-
+<p>
+  <strong>Products:</strong>
+  <div>
+    <%= @cart.each do|c| %>
+       <p>ProductId:</p><%= c.product_id %>
+       <p>Quantity:</p><%= c.quantity %>
+       <p>Bill ID:</p><%= @bill.id %>
+    <% end %>
+  </div>
+</p>
 <p>
   <strong>Shop:</strong>
   <%= @bill.shop_id %>
