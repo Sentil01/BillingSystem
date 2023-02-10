@@ -27,6 +27,7 @@ class BillsController < ApplicationController
     @rounded_price = @net_amount.round()
     @balance=@bill.amount_paid-@rounded_price
     @bill.update(total_tax: @tax_total,total_amount: @amount_total,net_amount: @net_amount,balance: @balance)
+
     b=@bill.balance
     @c500=@c100=@c50=@c10=@c5=@c2=@c1=0
     while b>0  do
@@ -35,6 +36,7 @@ class BillsController < ApplicationController
         @c500=@c500+q
         r=b%500
         b=r
+
       elsif (b>=100)
         q=b/100
         @c100=@c100+q
@@ -70,6 +72,7 @@ class BillsController < ApplicationController
       end
 
     end
+
 
   end
 

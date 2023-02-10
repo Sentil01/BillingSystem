@@ -1,4 +1,5 @@
 class Bill < ApplicationRecord
+
   belongs_to :shop
   has_many :carts,dependent: :destroy
   accepts_nested_attributes_for :carts,allow_destroy: true
@@ -8,4 +9,5 @@ class Bill < ApplicationRecord
       self.amounts.build(amount_attribute)
     end
   end
+
 end
