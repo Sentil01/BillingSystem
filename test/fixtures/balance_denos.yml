@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  c500: 1
+  c100: 1
+  c50: 1
+  c10: 1
+  c5: 1
+  c2: 1
+  c1: 1
+  bill: one
+
+two:
+  c500: 1
+  c100: 1
+  c50: 1
+  c10: 1
+  c5: 1
+  c2: 1
+  c1: 1
+  bill: two

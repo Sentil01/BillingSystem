@@ -9,8 +9,28 @@ class BillsController < ApplicationController
 
   # GET /bills/1 or /bills/1.json
   def show
+
+
+  end
+
+  # GET /bills/new
+  def new
+    @bill =  @shop.bills.build
+    @amount=@bill.amounts.build
+  end
+
+  # GET /bills/1/edit
+  def edit
+  end
+
+  # POST /bills or /bills.json
+  def create
+    @bill =  @shop.bills.build(bill_params)
+
+    @cart=@bill.carts
     total_amount=0
     total_tax=0
+
     @cart.each do|c|
       p=@shop.products.find(c.product_id)
       pur=p.price * c.quantity
@@ -27,7 +47,6 @@ class BillsController < ApplicationController
     @rounded_price = @net_amount.round()
     @balance=@bill.amount_paid-@rounded_price
     @bill.update(total_tax: @tax_total,total_amount: @amount_total,net_amount: @net_amount,balance: @balance)
-
     b=@bill.balance
     @c500=@c100=@c50=@c10=@c5=@c2=@c1=0
     while b>0  do
@@ -72,24 +91,8 @@ class BillsController < ApplicationController
       end
 
     end
-
-
-  end
-
-  # GET /bills/new
-  def new
-    @bill =  @shop.bills.build
-    @amount=@bill.amounts.build
-  end
-
-  # GET /bills/1/edit
-  def edit
-  end
-
-  # POST /bills or /bills.json
-  def create
-    @bill =  @shop.bills.build(bill_params)
-
+    @bill.balance_denos.new(c500: @c500,c100: @c100,c50: @c50,c10: @c10,c5: @c5,c2: @c2,c1: @c1)
+    @shop.denominations.update()
     respond_to do |format|
       if @bill.save
         format.html { redirect_to shop_bills_path(@shop), notice: "Bill was successfully created." }
@@ -99,6 +102,7 @@ class BillsController < ApplicationController
         format.json { render json: @bill.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
   # PATCH/PUT /bills/1 or /bills/1.json
@@ -133,6 +137,7 @@ class BillsController < ApplicationController
       @bill = @shop.bills.find(params[:id])
       @cart=@bill.carts
       @amounts=@bill.amounts
+      @balance_deno=@bill.balance_denos
     end
 
     # Only allow a list of trusted parameters through.

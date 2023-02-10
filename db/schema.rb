@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_10_092847) do
+ActiveRecord::Schema.define(version: 2023_02_10_182008) do
 
   create_table "amounts", force: :cascade do |t|
     t.integer "five_hundred", default: 0
@@ -24,6 +24,20 @@ ActiveRecord::Schema.define(version: 2023_02_10_092847) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["bill_id"], name: "index_amounts_on_bill_id"
+  end
+
+  create_table "balance_denos", force: :cascade do |t|
+    t.integer "c500"
+    t.integer "c100"
+    t.integer "c50"
+    t.integer "c10"
+    t.integer "c5"
+    t.integer "c2"
+    t.integer "c1"
+    t.integer "bill_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["bill_id"], name: "index_balance_denos_on_bill_id"
   end
 
   create_table "bills", force: :cascade do |t|
@@ -85,6 +99,7 @@ ActiveRecord::Schema.define(version: 2023_02_10_092847) do
   end
 
   add_foreign_key "amounts", "bills"
+  add_foreign_key "balance_denos", "bills"
   add_foreign_key "bills", "shops"
   add_foreign_key "carts", "bills"
   add_foreign_key "denominations", "shops"

@@ -10,44 +10,49 @@
       </ul>
     </div>
   <% end %>
+  <div class="row">
+    <div class="col">
+      <div class="field">
+        <%= form.label :email_id %>
+        <%= form.text_field :email_id %>
+      </div>
+    </div>
+    <div class="col">
 
-  <div class="field">
-    <%= form.label :email_id %>
-    <%= form.text_field :email_id %>
-  </div>
+      <div class="field">
+        <%= form.label :name %>
+        <%= form.text_field :name %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
+  </div><br>
   <div class="field">
     <%= form.label :amount_paid %>
     <%= form.number_field :amount_paid %>
-  </div>
-  <h3>Products:</h3>
+  </div><br>
+  <h3>Products:</h3><br>
   <fieldset>
     <%= form.fields_for :carts do |c| %>
        <%= render "carts_fields",f: c %>
     <%end %>
     <%= link_to_add_to_carts "Add Products",form, :carts %>
-  </fieldset>
+  </fieldset><br>
 
   <div class="field">
-    <%= form.label :shop_id %>
-    <%= form.text_field :shop_id %>
+
+    <%= form.hidden_field :shop_id %>
   </div>
 
 
   <div>
-    <h1>Denominations Available</h1>
+    <strong>Denominations Available</strong><br>
 
-    <fieldset>
+    <fieldset><br>
       <%= form.fields_for :amounts do |a| %>
         <%= render "amounts_fields",fo: a %>
       <%end %>
 
-    </fieldset>
+    </fieldset><br>
 
   </div>
   <div class="actions">

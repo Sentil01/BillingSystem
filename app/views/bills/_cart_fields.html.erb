@@ -1,19 +1,29 @@
 <div class="nested-fields">
-  <%= f.hidden_field :_destroy %>
+  <div class="row">
+    <div class="col">
+      <%= f.hidden_field :_destroy %>
+      <div>
+        <%= f.label :product_id %>
+        <%= f.select :product_id,@shop.products.collect{|p| [p.id]},include_blank: true %>
+      </div>
 
-  <div>
-    <%= f.label :product_id %>
-    <%= f.select :product_id,@shop.products.collect{|p| [p.id]},include_blank: true %>
+    </div>
+    <div class="col">
+      <div>
+
+        <%= f.label :quantity %>
+        <%= f.text_field :quantity %><br>
+
+      </div>
+
+    </div>
+    <div class="col">
+      <div>
+
+        <%= link_to  "Delete","#",class:"remove_fields" %>
+      </div>
+
+
+    </div>
   </div>
-  <div>
-
-    <%= f.label :quantity %>
-    <%= f.text_field :quantity %><br>
-
-  </div>
-  <div>
-
-    <%= link_to  "Delete","#",class:"remove_fields" %>
-  </div>
-
-</div>
+</div><br>

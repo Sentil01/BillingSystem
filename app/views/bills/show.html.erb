@@ -1,77 +1,123 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <p id="notice"><%= notice %></p>
+  <div class="row">
+    <div class="col">
+      <strong>Email:</strong>
+      <%= @bill.email_id %>
+    </div>
 
-<p>
-  <strong>Email:</strong>
-  <%= @bill.email_id %>
-</p>
+    <div class="col">
+      <strong>Name:</strong>
+      <%= @bill.name %>
+    </div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @bill.name %>
-</p>
-
-<p>
-  <strong>Amount paid:</strong>
-  <%= @bill.amount_paid %>
-</p>
-<p>
-  <strong>Products:</strong>
-  <div>
-    <% total_tax=0.0%>
-    <%total_amount=0  %>
-    <% @cart.each do|c| %>
-       <p>ProductId: <%= c.product_id %></p>
-       <% p=@shop.products.find(c.product_id) %>
-       <p>Product Name:<%= p.product_name %></p>
-       <p>Unit Price:<%= p.price %></p>
-       <p>Quantity:<%= c.quantity %></p>
-
-       <p>Purchased Price:<%= c.purchased_price %></p>
-      <p>Tax % for item: <%= p.tax %></p>
-
-      <p>Tax payable for the item:<%= c.item_tax %></p>
-
-      <p>Total Amount for the item:<%= @bill.net_amount %></p>
-       <p>Bill ID:<%= @bill.id %></p>
-    <% end %>
   </div>
-</p>
-<p>
-  <strong>Shop:</strong>
-  <%= @bill.shop_id %>
-</p>
+<!--  <p>-->
+<!--    <strong>Amount paid:</strong>-->
+    <%#= @bill.amount_paid %>
+<!--  </p>-->
+    <br>
+    <strong>Products:</strong>
 
-<div>
-  <h1>Balance denominations:</h1>
-</div>
-<div>
-  <h3>Total Price Without Tax :<%= @bill.total_amount %></h3>
-  <h3>Tax to be paid:<%= @bill.total_tax %></h3>
+  <div>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">Product Id</th>
+        <th scope="col">Product Name</th>
+        <th scope="col">Unit Price</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Purchased Price</th>
+        <th scope="col">Tax % for the iterm</th>
+        <th scope="col">Tax Payable For the Item</th>
+        <th scope="col">Total Price</th>
+      </tr>
+      </thead>
+      <tbody>
 
-  <h3>Net Price:<%=@bill.net_amount  %></h3>
+      <% @cart.each do|c| %>
+        <tr>
+          <td><%= c.product_id %></td>
+          <% p=@shop.products.find(c.product_id) %>
+          <td><%= p.product_name %></td>
+          <td><%= p.price %></td>
+          <td><%= c.quantity %></td>
+          <td><%= c.purchased_price %></td>
+          <td><%= p.tax %></td>
+          <td><%= c.item_tax %></td>
+          <td><%= @bill.net_amount %></td>
+        </tr>
+      <% end %>
 
-  <h3>Rounded Down value of the net price:<%=@rounded_price %></h3>
-
-
-  <h3>Balance Payable to the customer:<%=@bill.balance %></h3>
-  <% b=@bill.balance %>
-
-  <p>Amount Paid:<%=@bill.amount_paid %></p>
-
-      <p>500 Quantity:<%= @c500 %></p>
-      <p>100 Quantity:<%= @c100   %></p>
-      <p>50 Quantity:<%= @c50 %></p>
-      <p>10 Quantity:<%= @c10 %></p>
-      <p>5 Quantity:<%= @c5 %></p>
-      <p>2 Quantity:<%= @c2 %></p>
-      <p>1 Quantity:<%= @c1 %></p>
-
+      </tbody>
+    </table>
 
 
+  </div>
+
+<!--  <p>-->
+<!--    <strong>Shop:</strong>-->
+    <%#= @bill.shop_id %>
+<!--  </p>-->
+  <strong>Balance denominations:</strong><br>
+  <div>
+
+
+    <%@balance_deno.each do|b| %>
+
+        <div class="row">
+          <div class="col">
+            <p>500 Quantity:<%= b.c500 %></p>
+            <p>100 Quantity:<%= b.c100   %></p>
+            <p>50 Quantity:<%= b.c50 %></p>
+
+          </div>
+          <div class="col">
+
+            <p>10 Quantity:<%= b.c10 %></p>
+            <p>5 Quantity:<%= b.c5 %></p>
+
+          </div>
+          <div class="col">
+
+            <p>2 Quantity:<%= b.c2 %></p>
+            <p>1 Quantity:<%= b.c1 %></p>
+
+          </div>
+        </div>
+    <% end %>
 
 
 
 
-</div>
+
+  </div>
+  <div class="row">
+    <div class="col">
+      <strong>Amount Paid:<%=@bill.amount_paid %></strong>
+
+    </div>
+    <div class="col">
+      <strong>Total Price Without Tax :<%= @bill.total_amount %></strong>
+      <br>
+      <strong>Tax to be paid:<%= @bill.total_tax %></strong>
+      <br>
+      <strong>Net Price:<%=@bill.net_amount  %></strong>
+      <br>
+      <strong>Rounded Down value of the net price:<%=@bill.net_amount.round() %></strong>
+      <br>
+
+      <strong>Balance Payable to the customer:<%=@bill.balance %></strong>
+
+
+
+
+    </div>
+
+
+  </div>
   <%= link_to 'Edit', edit_shop_bill_path(@shop,@bill) %> |
-<%= link_to 'Back', shop_bills_path(@shop) %>
+  <%= link_to 'Back', shop_bills_path(@shop) %>
+
+
+</div>
