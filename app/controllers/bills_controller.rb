@@ -9,7 +9,67 @@ class BillsController < ApplicationController
 
   # GET /bills/1 or /bills/1.json
   def show
+    total_amount=0
+    total_tax=0
+    @cart.each do|c|
+      p=@shop.products.find(c.product_id)
+      pur=p.price * c.quantity
+      total_amount= total_amount + pur
+      tax = (p.tax*p.price) /100
+      item_tax =tax*c.quantity
+      total_tax = total_tax + item_tax
+      item_total = pur + item_tax
+      c.update(purchased_price: pur,tax_per_item: tax,item_tax: item_tax)
+    end
+    @amount_total =total_amount
+    @tax_total =total_tax
+    @net_amount=total_amount+total_tax
+    @rounded_price = @net_amount.round()
+    @balance=@bill.amount_paid-@rounded_price
+    @bill.update(total_tax: @tax_total,total_amount: @amount_total,net_amount: @net_amount,balance: @balance)
+    b=@bill.balance
+    @c500=@c100=@c50=@c10=@c5=@c2=@c1=0
+    while b>0  do
+      if (b>=500)
+        q=b/500
+        @c500=@c500+q
+        r=b%500
+        b=r
+      elsif (b>=100)
+        q=b/100
+        @c100=@c100+q
+        r=b%100
+        b=r
+      elsif (b>=50)
+        q=b/50
+        @c50=@c50+q
+        r=b%50
+        b=r
+      elsif (b>=10)
+        q=b/10
+        @c10=@c10+q
+        r=b%10
+        b=r
+      elsif (b>=5)
+        q=b/5
+        @c5=@c5+q
+        r=b%5
+        b=r
+      elsif (b>=2)
+        q=b/2
+        @c2=@c2+q
+        r=b%2
+        b=r
+      elsif (b>=1)
+        q=b/1
+        @c1=@c1+q
+        r=b%10
+        b=r
+      else
+        break
+      end
 
+    end
 
   end
 
