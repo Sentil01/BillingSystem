@@ -10,6 +10,7 @@ class BillsController < ApplicationController
   # GET /bills/1 or /bills/1.json
   def show
 
+
   end
 
   # GET /bills/new

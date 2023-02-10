@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_09_181407) do
+ActiveRecord::Schema.define(version: 2023_02_10_092847) do
 
   create_table "amounts", force: :cascade do |t|
     t.integer "five_hundred", default: 0
@@ -33,14 +33,10 @@ ActiveRecord::Schema.define(version: 2023_02_09_181407) do
     t.integer "shop_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "five_hundred"
-    t.integer "hundred"
-    t.integer "fifty"
-    t.integer "twenty"
-    t.integer "ten"
-    t.integer "five"
-    t.integer "two"
-    t.integer "one"
+    t.float "total_tax"
+    t.float "total_amount"
+    t.float "net_amount"
+    t.integer "balance"
     t.index ["shop_id"], name: "index_bills_on_shop_id"
   end
 
@@ -50,6 +46,9 @@ ActiveRecord::Schema.define(version: 2023_02_09_181407) do
     t.integer "bill_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "purchased_price"
+    t.float "tax_per_item"
+    t.float "item_tax"
     t.index ["bill_id"], name: "index_carts_on_bill_id"
   end
 
@@ -57,7 +56,6 @@ ActiveRecord::Schema.define(version: 2023_02_09_181407) do
     t.integer "five_hundred"
     t.integer "hundred"
     t.integer "fifty"
-    t.integer "twenty"
     t.integer "ten"
     t.integer "five"
     t.integer "two"
