@@ -17,10 +17,26 @@
 <p>
   <strong>Products:</strong>
   <div>
+    <% total_tax=0.0%>
+    <%total_amount=0  %>
     <% @cart.each do|c| %>
-       <p>ProductId:</p><%= c.product_id %>
-       <p>Quantity:</p><%= c.quantity %>
-       <p>Bill ID:</p><%= @bill.id %>
+       <p>ProductId: <%= c.product_id %></p>
+       <% p=@shop.products.find(c.product_id) %>
+       <p>Product Name:<%= p.product_name %></p>
+       <p>Unit Price:<%= p.price %></p>
+       <p>Quantity:<%= c.quantity %></p>
+      <% pur=p.price * c.quantity%>
+      <% total_amount= total_amount + pur %>
+       <p>Purchased Price:<%= pur %></p>
+      <p>Tax % for item: <%= p.tax %></p>
+      <% tax = (p.tax*p.price) /100%>
+      <%= tax %>
+      <% item_tax =tax*c.quantity %>
+      <% total_tax = total_tax + item_tax%>
+      <p>Tax payable for the item:<%= item_tax %></p>
+      <% item_total = pur + item_tax %>
+      <p>Total Amount for the item:<%= item_total %></p>
+       <p>Bill ID:<%= @bill.id %></p>
     <% end %>
   </div>
 </p>
@@ -28,18 +44,80 @@
   <strong>Shop:</strong>
   <%= @bill.shop_id %>
 </p>
-<div>
-  <h1>Denominations Available</h1>
-  <% @bill.amounts.each do|a| %>
-    <p>500 Quantity:<%= a.five_hundred %></p>
-    <p>100 Quantity:<%= a.hundred   %></p>
-    <p>50 Quantity:<%= a.fifty %></p>
-    <p>10 Quantity:<%= a.ten %></p>
-    <p>5 Quantity:<%= a.five %></p>
-    <p>2 Quantity:<%= a.two %></p>
-    <p>1 Quantity:<%= a.one %></p>
 
+<div>
+  <h1>Balance denominations:</h1>
+</div>
+<div>
+  <h3>Total Price Without Tax :<%= total_amount %></h3>
+  <h3>Tax to be paid:<%= total_tax %></h3>
+  <% net_price =total_amount + total_tax %>
+  <h3>Net Price:<%= net_price %></h3>
+  <% rounded_price = net_price.round() %>
+  <h3>Rounded Down value of the net price:<%=rounded_price %></h3>
+
+  <% bal = @bill.amount_paid - rounded_price %>
+  <h3>Balance Payable to the customer:<%=bal %></h3>
+  <% b=bal %>
+  <% c500=0 %>
+  <% c100=0 %>
+  <% c50=0 %>
+  <% c10=0 %>
+  <% c5=0 %>
+  <% c2=0 %>
+  <% c1=0 %>
+  <% while b>0  do %>
+    <%if (b>=500) %>
+      <% q=b/500%>
+      <% c500=c500+q %>
+      <% r=b%500%>
+      <% b=r %>
+    <%  elsif (b>=100)%>
+      <%q=b/100 %>
+      <% c100=c100+q%>
+      <%r=b%100 %>
+      <%  b=r %>
+    <%  elsif (b>=50)%>
+      <%q=b/50 %>
+      <% c50=c50+q%>
+      <%r=b%50 %>
+      <%  b=r %>
+    <%  elsif (b>=10)%>
+      <%q=b/10 %>
+      <% c10=c10+q%>
+      <%r=b%10 %>
+      <%  b=r %>
+    <%  elsif (b>=5)%>
+      <%q=b/5 %>
+      <% c5=c5+q%>
+      <%r=b%5 %>
+      <%  b=r %>
+    <%  elsif (b>=2)%>
+      <%q=b/2 %>
+      <% c2=c2+q%>
+      <%r=b%2 %>
+      <%  b=r %>
+    <%  elsif (b>=1)%>
+      <%q=b/1 %>
+      <% c1=c1+q%>
+      <%r=b%10 %>
+      <%  b=r %>
+    <% else %>
+      <% break %>
+    <%end %>
   <% end %>
+  <p>Amount Paid:<%=@bill.amount_paid %></p>
+
+      <p>500 Quantity:<%= c500 %></p>
+      <p>100 Quantity:<%= c100   %></p>
+      <p>50 Quantity:<%= c50 %></p>
+      <p>10 Quantity:<%= c10 %></p>
+      <p>5 Quantity:<%= c5 %></p>
+      <p>2 Quantity:<%= c2 %></p>
+      <p>1 Quantity:<%= c1 %></p>
+
+
+
 
 
 
