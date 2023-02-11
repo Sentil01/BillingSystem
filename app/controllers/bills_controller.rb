@@ -92,7 +92,8 @@ class BillsController < ApplicationController
 
     end
     @bill.balance_denos.new(c500: @c500,c100: @c100,c50: @c50,c10: @c10,c5: @c5,c2: @c2,c1: @c1)
-    @shop.denominations.update()
+    @shop.denominations.update(five_hundred: @shop.denominations.pluck(:five_hundred).join.to_i+@bill.amounts.pluck(:five_hundred).join.to_i,hundred: @shop.denominations.pluck(:hundred).join.to_i+@bill.amounts.pluck(:hundred).join.to_i,fifty: @shop.denominations.pluck(:fifty).join.to_i+@bill.amounts.pluck(:fifty).join.to_i,ten: @shop.denominations.pluck(:ten).join.to_i+@bill.amounts.pluck(:ten).join.to_i,five: @shop.denominations.pluck(:five).join.to_i+@bill.amounts.pluck(:five).join.to_i,two: @shop.denominations.pluck(:two).join.to_i+@bill.amounts.pluck(:two).join.to_i,one: @shop.denominations.pluck(:one).join.to_i+@bill.amounts.pluck(:one).join.to_i)
+    @shop.denominations.update(five_hundred: @shop.denominations.pluck(:five_hundred).join.to_i-@c500,hundred: @shop.denominations.pluck(:hundred).join.to_i-@c100,fifty: @shop.denominations.pluck(:fifty).join.to_i-@c50,ten: @shop.denominations.pluck(:ten).join.to_i-@c10,five: @shop.denominations.pluck(:five).join.to_i-@c5,two: @shop.denominations.pluck(:two).join.to_i-@c2,one: @shop.denominations.pluck(:one).join.to_i-@c1)
     respond_to do |format|
       if @bill.save
         format.html { redirect_to shop_bills_path(@shop), notice: "Bill was successfully created." }
@@ -138,6 +139,7 @@ class BillsController < ApplicationController
       @cart=@bill.carts
       @amounts=@bill.amounts
       @balance_deno=@bill.balance_denos
+
     end
 
     # Only allow a list of trusted parameters through.
