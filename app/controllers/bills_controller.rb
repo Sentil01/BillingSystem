@@ -17,7 +17,21 @@ class BillsController < ApplicationController
   def new
     @bill =  @shop.bills.build
     @amount=@bill.amounts.build
-  end
+     @shop.denominations.each do|d|
+
+         if (d.five_hundred <=10 || d.hundred <=10 || d.fifty <=10 || d.ten <=10 || d.five <=10 || d.two <=10 || d.one <=10)
+             respond_to do |format|
+
+                 format.html { redirect_to shop_bills_path(@shop), alert: "Insufficient Balance:Refill The Denominations" }
+
+             end
+
+         end
+
+     end
+
+
+end
 
   # GET /bills/1/edit
   def edit

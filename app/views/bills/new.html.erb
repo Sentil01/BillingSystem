@@ -1,12 +1,23 @@
-<!--<script>-->
-<!--  console.log(<%#=@bill%>)-->
-<!--  console.log("hi")-->
-<!--</script>-->
+<!--<br>-->
+<%# @shop.denominations.each do|d|%>
+
+  <%#= d.five_hundred <=10 || d.hundred <=10 || d.fifty <=10 || d.ten <=10 || d.five <=10 || d.two <=10 || d.one <=10 %>
+  <%# if ( d.five_hundred <=10 || d.hundred <=10 || d.fifty <=10 || d.ten <=10 || d.five <=10 || d.two <=10 || d.one <=10) %>
+<!--      alert("Insufficient Balance:Refill The Denominations")-->
+    <%#end %>
+<%# end %>
+
+
+
+
+
 <div class="container">
   <h4>New Bill</h4><br>
 
   <%= render 'form', bill: @bill %>
+  <div id="d1">
 
+  </div>
 
 
   <%= link_to 'Back', shop_bills_path(@shop) %>

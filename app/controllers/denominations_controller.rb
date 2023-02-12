@@ -71,6 +71,6 @@
 
     # Only allow a list of trusted parameters through.
     def denomination_params
-      params.require(:denomination).permit(:five_hundred, :hundred, :fifty, :twenty, :ten, :five, :two, :one, :shop_id)
+      params.require(:denomination).permit(:five_hundred, :hundred, :fifty, :ten, :five, :two, :one, :shop_id)
     end
 end
