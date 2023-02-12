@@ -1,19 +1,39 @@
+<style>
+  .container{
+      margin-top:50px;
+      margin-left:170px;
+  }
+  .bt{
+      margin-top: 15px;
+      margin-left: 500px;
+  }
+</style>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>Bill Generation System</h1>
 
+    </div>
+    <div class="bt ">
+      <%= button_to 'New Bill', new_shop_bill_path(@shop),method: "get",class:"btn btn-primary" %>
 
-<h1>Bills</h1>
+    </div>
+  </div>
 
-<table>
-  <thead>
+  <br>
+
+  <table class="table table-striped">
+    <thead>
     <tr>
       <th>Email</th>
       <th>Name</th>
       <th>Amount paid</th>
       <th>Shop</th>
-      <th colspan="3"></th>
+      <th colspan="2"></th>
     </tr>
-  </thead>
+    </thead>
 
-  <tbody>
+    <tbody>
     <% @bills.each do |bill| %>
       <tr>
         <td><%= bill.email_id %></td>
@@ -21,13 +41,17 @@
         <td><%= bill.amount_paid %></td>
         <td><%= bill.shop_id %></td>
         <td><%= link_to 'Show', shop_bill_path(@shop,bill) %></td>
-        <td><%= link_to 'Edit', edit_shop_bill_path(@shop,bill) %></td>
+<!--        <td><%#= link_to 'Edit', edit_shop_bill_path(@shop,bill) %></td>-->
         <td><%= link_to 'Destroy', shop_bill_path(@shop,bill), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
 
-<br>
+  <br>
 
-<%= link_to 'New Bill', new_shop_bill_path(@shop) %>
+
+
+
+</div>
+

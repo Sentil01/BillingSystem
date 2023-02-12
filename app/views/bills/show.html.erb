@@ -1,4 +1,30 @@
-<div class="container">
+<style>
+  .container{
+      margin-top:50px;
+      margin-bottom: 50px;
+      padding:50px;
+      background-color: white;
+
+  }
+  .dd{
+      padding:30px;
+  }
+  .qp{
+      background-color: #FFE4E1;
+      padding:20px;
+      border-radius: 8px;
+
+  }
+  .ad{
+      margin-left: 150px;
+
+  }
+  .sa{
+      padding:20px;
+
+  }
+</style>
+<div class="container border border-dark rounded">
   <p id="notice"><%= notice %></p>
   <div class="row">
     <div class="col">
@@ -12,14 +38,16 @@
     </div>
 
   </div>
+  <br>
+
 <!--  <p>-->
 <!--    <strong>Amount paid:</strong>-->
     <%#= @bill.amount_paid %>
 <!--  </p>-->
     <br>
-    <strong>Products:</strong>
+<!--    <strong>Products:</strong>-->
 
-  <div>
+  <div class="tb">
     <table class="table table-striped">
       <thead>
       <tr>
@@ -45,7 +73,7 @@
           <td><%= c.purchased_price %></td>
           <td><%= p.tax %></td>
           <td><%= c.item_tax %></td>
-          <td><%= @bill.net_amount %></td>
+          <td><%= c.purchased_price + c.item_tax %></td>
         </tr>
       <% end %>
 
@@ -54,36 +82,36 @@
 
 
   </div>
+  <br>
 
 <!--  <p>-->
 <!--    <strong>Shop:</strong>-->
     <%#= @bill.shop_id %>
 <!--  </p>-->
   <strong>Balance denominations:</strong><br>
-  <div>
+  <div class="dd">
 
 
     <%@balance_deno.each do|b| %>
 
         <div class="row">
           <div class="col">
-            <p>500 Quantity:<%= b.c500 %></p>
-            <p>100 Quantity:<%= b.c100   %></p>
-            <p>50 Quantity:<%= b.c50 %></p>
+            <p class="qp">500  Quantity: <%= b.c500 %></p>
+            <p class="qp">100  Quantity: <%= b.c100   %></p>
+            <p class="qp">50   Quantity: <%= b.c50 %></p>
+            <p class="qp">10  Quantity: <%= b.c10 %></p>
 
           </div>
           <div class="col">
 
-            <p>10 Quantity:<%= b.c10 %></p>
-            <p>5 Quantity:<%= b.c5 %></p>
+
+            <p class="qp">5   Quantity: <%=  b.c5 %></p>
+            <p class="qp">2  Quantity: <%= b.c2 %></p>
+            <p class="qp">1  Quantity: <%= b.c1 %></p>
+
 
           </div>
-          <div class="col">
 
-            <p>2 Quantity:<%= b.c2 %></p>
-            <p>1 Quantity:<%= b.c1 %></p>
-
-          </div>
         </div>
     <% end %>
 
@@ -92,22 +120,26 @@
 
 
   </div>
+  <br>
   <div class="row">
     <div class="col">
-      <strong>Amount Paid:<%=@bill.amount_paid %></strong>
+      <strong>Amount Paid: </strong><%=@bill.amount_paid %>
 
     </div>
-    <div class="col">
-      <strong>Total Price Without Tax :<%= @bill.total_amount %></strong>
+    <div class="ad col">
+      <strong class="sa">Total Price Without Tax : </strong><%= @bill.total_amount %>
       <br>
-      <strong>Tax to be paid:<%= @bill.total_tax %></strong>
       <br>
-      <strong>Net Price:<%=@bill.net_amount  %></strong>
+      <strong class="sa">Tax to be paid: </strong><%= @bill.total_tax %>
       <br>
-      <strong>Rounded Down value of the net price:<%=@bill.net_amount.round() %></strong>
       <br>
-
-      <strong>Balance Payable to the customer:<%=@bill.balance %></strong>
+      <strong class="sa">Net Price: </strong><%=@bill.net_amount  %>
+      <br>
+      <br>
+      <strong class="sa">Rounded Down value of the net price: </strong><%=@bill.net_amount.round() %>
+      <br>
+      <br>
+      <strong class="sa">Balance Payable to the customer: </strong><%=@bill.balance %>
 
 
 
@@ -116,8 +148,8 @@
 
 
   </div>
-  <%= link_to 'Edit', edit_shop_bill_path(@shop,@bill) %> |
-  <%= link_to 'Back', shop_bills_path(@shop) %>
+<!--  <%#= link_to 'Edit', edit_shop_bill_path(@shop,@bill) %> |-->
+  <%= button_to 'Back', shop_bills_path(@shop),method: "get",class: "btn btn-primary" %>
 
 
 </div>

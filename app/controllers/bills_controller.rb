@@ -10,6 +10,17 @@ class BillsController < ApplicationController
   # GET /bills/1 or /bills/1.json
   def show
 
+    if (@bill.net_amount.to_i > @bill.amount_paid)
+      @bill.destroy
+
+
+      respond_to do |format|
+        format.html { redirect_to new_shop_bill_path(@shop), alert: "Amount Paid Is Lower than the Bill amount" }
+      end
+      return
+
+    end
+
 
   end
 
@@ -41,6 +52,7 @@ end
   def create
     @bill =  @shop.bills.build(bill_params)
 
+
     @cart=@bill.carts
     total_amount=0
     total_tax=0
@@ -59,7 +71,10 @@ end
     @tax_total =total_tax
     @net_amount=total_amount+total_tax
     @rounded_price = @net_amount.round()
+
+
     @balance=@bill.amount_paid-@rounded_price
+
     @bill.update(total_tax: @tax_total,total_amount: @amount_total,net_amount: @net_amount,balance: @balance)
     b=@bill.balance
     @c500=@c100=@c50=@c10=@c5=@c2=@c1=0
@@ -110,7 +125,7 @@ end
     @shop.denominations.update(five_hundred: @shop.denominations.pluck(:five_hundred).join.to_i-@c500,hundred: @shop.denominations.pluck(:hundred).join.to_i-@c100,fifty: @shop.denominations.pluck(:fifty).join.to_i-@c50,ten: @shop.denominations.pluck(:ten).join.to_i-@c10,five: @shop.denominations.pluck(:five).join.to_i-@c5,two: @shop.denominations.pluck(:two).join.to_i-@c2,one: @shop.denominations.pluck(:one).join.to_i-@c1)
     respond_to do |format|
       if @bill.save
-        format.html { redirect_to shop_bills_path(@shop), notice: "Bill was successfully created." }
+        format.html { redirect_to shop_bill_path(@shop,@bill), notice: "Bill was successfully created." }
         format.json { render :show, status: :created, location: @bill }
       else
         format.html { render :new, status: :unprocessable_entity }

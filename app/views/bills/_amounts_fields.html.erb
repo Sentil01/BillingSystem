@@ -1,38 +1,39 @@
-<div class="row">
-  <div class="col">
+<div class="form-row">
+  <div class="col-4">
     <div class="field">
       <%= fo.label :"500" %>
-      <%= fo.number_field :five_hundred %>
+      <%= fo.number_field :five_hundred,class:"form-control"%>
+
     </div>
     <div class="field">
       <%= fo.label :"100" %>
-      <%= fo.number_field :hundred %>
+      <%= fo.number_field :hundred,class:"form-control" %>
     </div>
     <div class="field">
       <%= fo.label :"50" %>
-      <%= fo.number_field :fifty %>
+      <%= fo.number_field :fifty,class:"form-control" %>
     </div>
     <div class="field">
       <%= fo.label :"10" %>
-      <%= fo.number_field :ten %>
+      <%= fo.number_field :ten,class:"form-control" %>
     </div>
 
 
   </div><br>
-  <div class="col">
+  <div class="s col-4">
 
     <div class="field">
       <%= fo.label :"5" %>
-      <%= fo.number_field :five %>
+      <%= fo.number_field :five,class:"form-control" %>
 
     </div>
     <div class="field">
       <%= fo.label :"2" %>
-      <%= fo.number_field :two %>
+      <%= fo.number_field :two,class:"form-control" %>
     </div>
     <div class="field">
       <%= fo.label :"1" %>
-      <%= fo.number_field :one %>
+      <%= fo.number_field :one,class:"form-control" %>
     </div>
 
 
@@ -45,3 +46,8 @@
 
 
 </div>
+<style>
+  .s{
+      margin-left:200px;
+  }
+</style>

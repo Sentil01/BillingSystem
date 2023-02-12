@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # resources :denominations
   # resources :products
 
-  root "shops#index"
+  root to:"bills#index",shop_id: 1
   resources :shops do
      resources :products
   end
