@@ -1,9 +1,10 @@
+<div class="container">
 
 
-<h1>Products</h1>
+  <h1>Products</h1>
 
-<table>
-  <thead>
+  <table class="table table-striped">
+    <thead>
     <tr>
       <th>Product Name</th>
       <th>Price</th>
@@ -12,9 +13,9 @@
       <th>Shop</th>
       <th colspan="3"></th>
     </tr>
-  </thead>
+    </thead>
 
-  <tbody>
+    <tbody>
     <% @products.each do |product| %>
       <tr>
         <td><%= product.product_name %></td>
@@ -27,9 +28,11 @@
         <td><%= link_to 'Destroy', shop_product_path(@shop,product), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
 
-<br>
+  <br>
 
-<%= link_to 'New Product', new_shop_product_path(@shop) %>
+  <%= link_to 'New Product', new_shop_product_path(@shop) %>|
+  <%= link_to "Back to Shops",shop_path(@shop) %>
+</div>

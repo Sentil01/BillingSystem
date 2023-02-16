@@ -1,9 +1,9 @@
 
+<div class="container">
+  <h1>Denominations</h1>
 
-<h1>Denominations</h1>
-
-<table>
-  <thead>
+  <table class="table table-striped">
+    <thead>
     <tr>
       <th>Five hundred</th>
       <th>Hundred</th>
@@ -17,9 +17,9 @@
 
       <th colspan="3"></th>
     </tr>
-  </thead>
+    </thead>
 
-  <tbody>
+    <tbody>
     <% @denominations.each do |denomination| %>
       <tr>
         <td><%= denomination.five_hundred %></td>
@@ -38,9 +38,12 @@
       </tr>
 
     <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
 
-<br>
+  <br>
 
-<%= link_to 'New Denomination', new_shop_denomination_path(@shop) %>
+  <%= link_to 'New Denomination', new_shop_denomination_path(@shop) %>|
+  <%= link_to "Back to Shops",shop_path(@shop) %>
+
+</div>

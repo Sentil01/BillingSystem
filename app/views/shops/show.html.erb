@@ -1,22 +1,36 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @shop.name %>
-</p>
+  <p>
+    <strong>Name:</strong>
+    <%= @shop.name %>
+  </p>
 
-<%= link_to 'Edit', edit_shop_path(@shop) %> |
-<%= link_to 'Back', shops_path %>
 
-<p>
-  <strong>Products:</strong>
-</p>
-<%= link_to 'Add Products',shop_products_path(@shop) %>
-<p>
-  <strong>Denominations:</strong>
-</p>
-<%= link_to 'Update Denominations',shop_denominations_path(@shop) %>
-<p>
-  <strong>Bills:</strong>
-</p>
-<%= link_to 'New Bill',shop_bills_path(@shop) %>
+   <br>
+  <p>
+    <strong>Products:</strong>
+    <%= link_to 'Add Products',shop_products_path(@shop) %>
+  </p>
+
+  <br>
+
+  <br><p>
+    <strong>Denominations:</strong>
+  <%= link_to 'Update Denominations',shop_denominations_path(@shop) %>
+  </p>
+
+  <p>
+    <br>
+    <strong>Bills:</strong>
+    <%= link_to 'New Bill',shop_bills_path(@shop) %>
+  </p>
+
+
+  </br>
+
+  <div>
+    <%= link_to 'Edit', edit_shop_path(@shop) %> |
+    <%= link_to 'Back', shops_path %>
+  </div>
+</div>
