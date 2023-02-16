@@ -7,6 +7,7 @@ class BillsController < ApplicationController
     @bills =  @shop.bills
   end
 
+
   # GET /bills/1 or /bills/1.json
   def show
 
